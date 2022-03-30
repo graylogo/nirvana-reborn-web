@@ -6,14 +6,15 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://152.136.185.210:4000/',
+        target: 'http://192.168.124.6:18097/',
         pathRewrite: {
           '^/api': ''
         },
         ws: true,
         changeOrigin: true
       }
-    }
+    },
+    port: 1025
   },
   configureWebpack: {
     resolve: {

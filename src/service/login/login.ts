@@ -3,9 +3,10 @@ import hyRequest from '../index'
 import { Account, LoginInfo } from './types'
 
 enum LoginAPI {
-  AccountLogin = '/login',
-  UserInfo = '/users/',
-  UserMenus = '/role/'
+  AccountLogin = '/system-web-app/auth/login',
+  UserInfo = '/system-web-app/auth/getUserInfo',
+  UserMenus = '/role/',
+  GetCode = '/system-web-app/auth/getLoginCode'
 }
 
 export function accountLoginRequest(account: Account) {
@@ -15,9 +16,15 @@ export function accountLoginRequest(account: Account) {
   })
 }
 
-export function getUserById(id: number) {
+export function getLoginCode() {
   return hyRequest.get({
-    url: LoginAPI.UserInfo + id
+    url: LoginAPI.GetCode
+  })
+}
+
+export function getUserById() {
+  return hyRequest.get({
+    url: LoginAPI.UserInfo
   })
 }
 

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import type { AxiosRequestConfig, AxiosInstance, AxiosResponse } from 'axios'
-import { ElLoading } from 'element-plus'
+import { ElLoading, ElMessage } from 'element-plus'
 import { ILoadingInstance } from 'element-plus/lib/el-loading/src/loading.type'
 
 interface InterceptorHooks {
@@ -79,8 +79,14 @@ class HYRequest {
     return new Promise((resolve, reject) => {
       this.instance
         .request<any, HYData<T>>(config)
-        .then((res) => {
-          resolve(res.data)
+        .then((res: any) => {
+          if (res.code === 0) {
+            resolve(res.data)
+          } else {
+            console.log(res)
+            ElMessage.error(res.message)
+            reject(res.data)
+          }
           this.showLoading = true
         })
         .catch((err) => {

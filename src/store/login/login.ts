@@ -41,7 +41,10 @@ const login: Module<ILoginState, IRootState> = {
     }
   },
   actions: {
-    async accountLoginAction({ commit, dispatch }, account: { name: string; password: string }) {
+    async accountLoginAction(
+      { commit, dispatch },
+      account: { name: string; password: string; code: string; codeId: string }
+    ) {
       // 1.用户登录
       const loginResult = await accountLoginRequest(account)
       const { id, token } = loginResult
@@ -50,7 +53,7 @@ const login: Module<ILoginState, IRootState> = {
       localCache.setCache('token', token)
 
       // 2.获取用户信息
-      const userInfo = await getUserById(id)
+      const userInfo = await getUserById()
       console.log(userInfo)
       commit('saveUserInfo', userInfo)
       localCache.setCache('userInfo', userInfo)
@@ -64,7 +67,7 @@ const login: Module<ILoginState, IRootState> = {
       // 4.请求完全的角色和部门
       dispatch('getInitalDataAction', null, { root: true })
 
-      // 跳转到首页
+      // 跳转到首页
       router.push('/main')
     },
     loadLocalCache({ commit, dispatch }) {

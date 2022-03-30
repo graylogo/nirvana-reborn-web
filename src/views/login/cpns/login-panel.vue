@@ -39,12 +39,13 @@ export default defineComponent({
     const currentTab = ref('account')
     const isKeep = ref(true)
 
-    const cacheName = localCache.getCache('name') ?? ''
+    const cacheName = localCache.getCache('username') ?? ''
     const cachePassword = localCache.getCache('password') ?? ''
 
     const account = reactive({
-      name: cacheName,
-      password: cachePassword
+      username: cacheName,
+      password: cachePassword,
+      code: ''
     })
     const accountRef = ref<InstanceType<typeof LoginAccount>>()
 

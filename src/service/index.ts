@@ -9,7 +9,7 @@ const hyRequest = new HYRequest({
     requestInterceptor: (config) => {
       const token = localCache.getCache('token')
       if (token) {
-        config.headers.Authorization = `Bearer ${token}`
+        config.headers['Access-Token'] = `Bearer ${token}`
       }
       return config
     },
