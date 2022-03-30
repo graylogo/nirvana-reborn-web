@@ -1,29 +1,14 @@
-# hy-vue3-ts-cms
+> 本项目基于Coderwhy老师的Vue3项目改造，后期会重新搭建一遍。
 
-## Project setup
+### 启动
 
 ```
 npm install
-```
-
-### Compiles and hot-reloads for development
-
-```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 修改请求地址
 
-```
-npm run build
-```
+本地项目在`vue.config.js`中修改`target`	字段即可；
 
-### Lints and fixes files
-
-```
-npm run lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
+打包项目需要在`.env.production`中修改目标文件夹；
